@@ -55,7 +55,7 @@ def genInsert(tn):
             if v is None:
                 val+="null,"
             else:
-                val+="'%s'," % v
+                val+="'%s'," % ("%s" % v).replace('\n','\\n').replace('\'',"\\'")
         sql+="\n (%s)," % val[:-1]
     return sql[:-1] + ";\n"
 
