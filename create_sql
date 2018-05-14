@@ -1,0 +1,47 @@
+# -*- coding: UTF-8 -*-
+"""
+创建文件
+1. 将需要生成的sql以模板的形式写好，并以{name}的形式替换参数
+2. 将sql中需要的参数定义为json的形式
+3. 按sql的生成需要的参数切分方法和json参数
+4. 定义统一的生成规则，如校验唯一性等。
+"""
+import json
+
+template = "insert into student(name, age, sex) values ('{name}', '{age}', '{sex}')"
+student = {"name": "xiaoyu", "age": 28, "sex": "man"}
+classes = {"name": "python", "period": 88}
+
+name_set = set([])
+
+
+# 是否存在
+def exist_check(item_set, item):
+    if item in item_set:
+        return False
+    item_set.add(item)
+    return True
+
+
+# 打印json字符串
+def dict2str(content, encoding='utf-8'):
+    # 只支持json格式
+    # indent 表示缩进空格数
+    return json.dumps(content, encoding=encoding, ensure_ascii=False, indent=4)
+    pass
+
+
+# 多个dict合并
+def filled(*dictList):
+    param = {}
+    for item in dictList:
+        param.update(item)
+    return param
+
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    pass
